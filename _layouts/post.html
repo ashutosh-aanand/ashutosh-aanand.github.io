@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-head">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span class="dot" aria-hidden="true">&middot;</span>
+      {%- assign words = content | number_of_words -%}
+      {%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+      <span>{{ minutes }} min read</span>
+      {%- if page.tags.size > 0 %}
+      <span class="dot" aria-hidden="true">&middot;</span>
+      {%- for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      {%- endif %}
+    </p>
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <nav class="post-nav" aria-label="More posts">
+    {%- if page.previous %}
+    <a class="post-nav__link post-nav__link--prev" href="{{ page.previous.url | relative_url }}">
+      <span class="post-nav__label">Previous</span>
+      <span class="post-nav__title">{{ page.previous.title }}</span>
+    </a>
+    {%- endif %}
+    {%- if page.next %}
+    <a class="post-nav__link post-nav__link--next" href="{{ page.next.url | relative_url }}">
+      <span class="post-nav__label">Next</span>
+      <span class="post-nav__title">{{ page.next.title }}</span>
+    </a>
+    {%- endif %}
+  </nav>
+</article>

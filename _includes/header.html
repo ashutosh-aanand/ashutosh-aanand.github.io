@@ -1,0 +1,21 @@
+<header class="site-header">
+  <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+  <nav class="site-nav" aria-label="Main">
+    <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+    <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} aria-current="page"{% endif %}>Projects</a>
+    {%- if site.resume_url %}
+    <a href="{{ site.resume_url | relative_url }}">Resume</a>
+    {%- endif %}
+
+    <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2v2.6M12 19.4V22M4.22 4.22l1.84 1.84M17.94 17.94l1.84 1.84M2 12h2.6M19.4 12H22M4.22 19.78l1.84-1.84M17.94 6.06l1.84-1.84"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/>
+      </svg>
+    </button>
+  </nav>
+</header>

@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <ul class="social">
+    {%- if site.social.github %}
+    <li><a href="https://github.com/{{ site.social.github }}" rel="me noopener">GitHub</a></li>
+    {%- endif %}
+    {%- if site.social.linkedin %}
+    <li><a href="https://www.linkedin.com/in/{{ site.social.linkedin }}/" rel="me noopener">LinkedIn</a></li>
+    {%- endif %}
+    {%- if site.social.twitter %}
+    <li><a href="https://x.com/{{ site.social.twitter }}" rel="me noopener">X</a></li>
+    {%- endif %}
+    {%- if site.social.email %}
+    <li><a href="mailto:{{ site.social.email }}">Email</a></li>
+    {%- endif %}
+    <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+  </ul>
+
+  <p class="colophon">
+    &copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}. Set in Newsreader &amp; Inter.
+  </p>
+</footer>

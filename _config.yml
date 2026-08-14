@@ -1,0 +1,75 @@
+# ---------------------------------------------------------------------------
+# Site
+# ---------------------------------------------------------------------------
+title: Ashutosh Anand
+tagline: Senior Software Engineer
+description: >-
+  Senior Software Engineer at Paytm. I build large-scale messaging and
+  communication platforms, and write about distributed systems, backend
+  engineering, and the occasional side project.
+
+# Change this if you deploy somewhere other than a GitHub user site.
+url: "https://ashutosh-aanand.github.io"
+baseurl: ""
+
+author:
+  name: Ashutosh Anand
+  email: ashutosh.aanand@gmail.com
+
+# Shown in the header/footer. Leave a value blank to hide that link.
+social:
+  github: ashutosh-aanand
+  linkedin: ashutosh-anand-1a1743156
+  email: ashutosh.aanand@gmail.com
+  twitter: # e.g. yourhandle
+
+# Resume PDF served from /assets/ — drop the file in and it shows up in the nav.
+resume_url: /assets/ashutosh-anand-resume.pdf
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+permalink: /:title/
+timezone: Asia/Kolkata
+paginate: false
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: /feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .github
+  - node_modules
