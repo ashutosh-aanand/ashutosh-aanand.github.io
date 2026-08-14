@@ -582,9 +582,15 @@ hr {
    ========================================================================== */
 
 @media (max-width: 34rem) {
-  .site-header { padding: 2rem 0 1.75rem; }
+  /* The nav wraps to a second line here, so give the masthead less room. */
+  .site-header {
+    padding: 1.1rem 0 0.7rem;
+    margin-bottom: 1.1rem;
+  }
 
-  .site-nav { gap: 1rem; }
+  .site-title { font-size: 1.35rem; }
+
+  .site-nav { gap: 0.9rem; }
 
   .rows { columns: 1; }
 
