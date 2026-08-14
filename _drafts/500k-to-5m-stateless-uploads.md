@@ -6,7 +6,8 @@ excerpt: "The upload path was stateful, and state is what breaks first when the 
 ---
 
 > **Draft.** The skeleton is real; the numbered details still need filling in
-> from the design doc. Delete this note before publishing.
+> from the design doc. To publish: fill in the TODOs, delete this note, and move
+> the file to `_posts/` renamed with a date prefix — `2026-06-20-<slug>.md`.
 
 Campaign audience uploads at Connectplus used to top out somewhere around
 **500K records**. Not because of a hard limit anyone wrote down — because the

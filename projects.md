@@ -42,5 +42,6 @@ campaign orchestration, delivery, callback handling and reporting, processing
 ---
 
 <p class="empty">
-  More write-ups on these are on the <a href="{{ '/' | relative_url }}">writing</a> page.
+  Longer write-ups on these are in progress &mdash; they'll show up on the
+  <a href="{{ '/' | relative_url }}">writing</a> page.
 </p>

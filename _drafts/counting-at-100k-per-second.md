@@ -5,8 +5,9 @@ tags: [technical]
 excerpt: "Impression capping is a counting problem, and counting is only easy when it's slow."
 ---
 
-> **Draft.** Structure is right, specifics need filling in. Delete this note
-> before publishing.
+> **Draft.** Structure is right, specifics need filling in. To publish: fill in
+> the TODOs, delete this note, and move the file to `_posts/` renamed with a
+> date prefix — `2026-03-08-<slug>.md`.
 
 Impression capping sounds trivial when you write the requirement down: *don't
 show this banner to this user more than N times*. It stays trivial right up
