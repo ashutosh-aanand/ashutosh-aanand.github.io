@@ -46,9 +46,11 @@ layout: default
   <ul class="rows">
     {%- for post in rest %}
     <li class="row">
-      <time class="row__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
       <a class="row__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      {%- if post.tags.first %}<span class="row__tag tag">{{ post.tags.first }}</span>{% else %}<span class="row__tag"></span>{% endif %}
+      <p class="row__meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+        {%- if post.tags.first %}<span class="tag">{{ post.tags.first }}</span>{% endif %}
+      </p>
     </li>
     {%- endfor %}
   </ul>
