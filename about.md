@@ -1,66 +1,53 @@
 ---
 layout: page
 title: About
-subtitle: Backend engineer, Bangalore-adjacent, mostly thinking about throughput.
 permalink: /about/
 ---
 
-I'm a Senior Software Engineer at **Paytm**, where I work on Connectplus — the
-customer engagement and communication platform. My work sits at the point where
-product requirements meet the parts of the system that have to stay up under
-load.
+I'm a backend engineer at Paytm, currently a Senior Software Engineer on
+Connectplus — the customer engagement and communication platform.
 
-## What I've been building
+I joined as an intern in January 2022, went full-time that June, and moved to
+Senior Software Engineer in June 2024. Before that I studied Electrical and
+Electronics Engineering at NIT Jamshedpur.
 
-**Rich Communication Services (RCS).** I led the end-to-end integration of RCS
-into Connectplus: template management, campaign orchestration, delivery,
-callback handling, and reporting. The pipeline processes 10M+ messages per day.
+## Work
 
-**Stateless base uploads.** Campaign audience uploads used to run through a
-stateful service that capped out around 500K records. I re-architected it as an
-event-driven pipeline on S3 pre-signed URLs and Lambda, which took it to 5M
-records per upload.
+Most of what I do is messaging infrastructure. I led the Rich Communication
+Services integration into Connectplus — template management, campaign
+orchestration, delivery, callbacks, reporting — which runs about 10 million
+messages a day.
 
-**WhatsApp template optimizer.** An AI-powered tool that rewrites templates to
-avoid Utility-to-Marketing recategorization — a 70–80% reduction, which maps
-directly to messaging cost for enterprise clients.
+Some other things I've worked on:
 
-**Impression capping.** A platform that regulates banner exposure across
-business verticals at 100K+ impressions per second.
+- Rewriting campaign audience uploads as an event-driven pipeline on S3
+  pre-signed URLs and Lambda, which moved the ceiling from 500K to 5M records
+  per upload.
+- An impression capping service that regulates banner exposure across business
+  verticals, at over 100K impressions per second.
+- A tool that rewrites WhatsApp templates to avoid Utility-to-Marketing
+  recategorization, cutting it by 70–80%.
+- Optimizing the homepage serving layer to hold 15K+ TPS at sub-50ms during
+  peak, and adding Resilience4j circuit breakers, timeouts and alerting across
+  the critical upstream dependencies.
+- Setting up the team's development workflow around Cursor, Claude, MCP tools,
+  Atlassian, Jenkins and ArgoCD.
 
-**Homepage serving layer.** Optimized to hold 15K+ TPS at sub-50ms latency
-during peak traffic, alongside a 50% cut in third-party communication platform
-costs through API and traffic optimization. I also put Resilience4j circuit
-breakers, timeouts, metrics and alerting across the critical upstream
-dependencies.
+## Tools
 
-**AI-driven development workflow.** I set up the team's workflow around Cursor,
-Claude, MCP tools, Atlassian, Jenkins and ArgoCD.
+Java and Spring Boot day to day. Kafka, Redis, Cassandra and MySQL for the
+stateful parts. Grafana and Prometheus for finding out what actually happened.
 
-## The toolbox
+## Side of the desk
 
-| Area | Tools |
-| --- | --- |
-| Backend | Java, Spring Boot, REST APIs, microservices |
-| Distributed systems | Kafka, Redis, Cassandra, MySQL, system design |
-| AI & automation | Cursor, Claude Code, Codex, MCP servers, LLM-powered apps |
-| Ops & observability | Git, Jenkins, ArgoCD, Grafana, Prometheus, Jira, Confluence |
+I built [SK Chess](https://accessiblechess.in), a chess application for
+visually impaired players — it reads PGN books aloud, gives audio feedback on
+the position, runs Stockfish analysis, and supports training mode, manual move
+input and game recording. Players in more than ten countries use it, and
+ChessBase India wrote about it.
 
-## Before Paytm
+## Contact
 
-B.Tech in Electrical and Electronics Engineering from **NIT Jamshedpur**
-(2018–2022, CGPA 8.40). I joined Paytm as an intern in Jan 2022, went full-time
-that June, and moved to Senior Software Engineer in June 2024.
-
-## Elsewhere
-
-I built [SK Chess](https://accessiblechess.in), an accessible chess application
-for visually impaired players — PGN book reading, real-time audio feedback,
-Stockfish analysis, training mode, manual move input and game recording. It's
-used by players in 10+ countries and was featured by ChessBase India.
-
-## Say hello
-
-Email is the reliable channel: [ashutosh.aanand@gmail.com](mailto:ashutosh.aanand@gmail.com).
-I'm also on [GitHub](https://github.com/ashutosh-aanand) and
+[ashutosh.aanand@gmail.com](mailto:ashutosh.aanand@gmail.com) —
+also [GitHub](https://github.com/ashutosh-aanand) and
 [LinkedIn](https://www.linkedin.com/in/ashutosh-anand-1a1743156/).

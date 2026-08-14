@@ -1,66 +1,57 @@
 ---
 layout: default
 ---
-<div class="home">
-
 <section class="intro">
   {{ content }}
 </section>
 
+{%- comment -%}
+  Featured post: whichever post sets `featured: true`, else the newest.
+  It is then excluded from the list below so nothing appears twice.
+{%- endcomment -%}
+{%- assign flagged = site.posts | where: "featured", true | first -%}
+{%- if flagged -%}
+  {%- assign featured = flagged -%}
+{%- else -%}
+  {%- assign featured = site.posts.first -%}
+{%- endif -%}
+
+{%- if featured %}
+<article class="featured">
+  <p class="eyebrow">Featured</p>
+
+  <h2 class="featured__title">
+    <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+  </h2>
+
+  <p class="featured__meta">
+    <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%b %-d, %Y" }}</time>
+    {%- assign words = featured.content | number_of_words -%}
+    <span class="dot" aria-hidden="true">&middot;</span>{{ words | divided_by: 220 | plus: 1 }} min read
+  </p>
+
+  {%- if featured.excerpt %}
+  <p class="featured__excerpt">{{ featured.excerpt | strip_html | strip_newlines | truncate: 220 }}</p>
+  {%- endif %}
+
+  <a class="featured__more" href="{{ featured.url | relative_url }}">Read it &rarr;</a>
+</article>
+{%- endif %}
+
 <section class="listing" aria-labelledby="writing-heading">
-  <div class="listing-head">
-    <h2 id="writing-heading">Writing</h2>
+  <p class="eyebrow" id="writing-heading">Writing</p>
 
-    <div class="segmented" role="group" aria-label="Sort posts">
-      <button type="button" class="segmented__btn is-active" data-view="date" aria-pressed="true">By date</button>
-      <button type="button" class="segmented__btn" data-view="tag" aria-pressed="false">By tag</button>
-    </div>
-  </div>
-
-  {%- comment -%} ---------- By date ---------- {%- endcomment -%}
-  <div class="view" data-panel="date">
-    {%- if site.posts.size == 0 %}
-    <p class="empty">No posts yet. Drop a Markdown file in <code>_posts/</code> to get started.</p>
-    {%- else %}
-    <ul class="rows">
-      {%- for post in site.posts %}
-      <li class="row">
-        <a class="row__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="row__leader" aria-hidden="true"></span>
-        <span class="row__meta">
-          {%- if post.tags.first %}<span class="tag">{{ post.tags.first }}</span>{% endif %}
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
-        </span>
-      </li>
-      {%- endfor %}
-    </ul>
-    {%- endif %}
-  </div>
-
-  {%- comment -%} ---------- By tag ---------- {%- endcomment -%}
-  <div class="view" data-panel="tag" hidden>
-    {%- assign tags = site.tags | sort %}
-    {%- for entry in tags %}
-    {%- assign tag_name = entry[0] %}
-    {%- assign tag_posts = entry[1] %}
-    <div class="tag-group">
-      <h3 class="tag-group__name">{{ tag_name }} <span class="tag-group__count">{{ tag_posts.size }}</span></h3>
-      <ul class="rows">
-        {%- for post in tag_posts %}
-        <li class="row">
-          <a class="row__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <span class="row__leader" aria-hidden="true"></span>
-          <span class="row__meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
-          </span>
-        </li>
-        {%- endfor %}
-      </ul>
-    </div>
-    {%- else %}
-    <p class="empty">No tags yet.</p>
+  {%- assign rest = site.posts | where_exp: "p", "p.url != featured.url" %}
+  {%- if rest.size > 0 %}
+  <ul class="rows">
+    {%- for post in rest %}
+    <li class="row">
+      <time class="row__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      <a class="row__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
     {%- endfor %}
-  </div>
+  </ul>
+  {%- else %}
+  <p class="empty">More on the way.</p>
+  {%- endif %}
 </section>
-
-</div>
