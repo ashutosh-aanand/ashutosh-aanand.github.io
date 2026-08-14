@@ -11,7 +11,8 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --measure: 40rem;   /* one column, everywhere */
+  --frame: 52rem;     /* page frame — header, listing, footer */
+  --measure: 40rem;   /* prose only; longer lines get tiring to read */
   --gutter: 1.5rem;
   --radius: 6px;
 
@@ -122,12 +123,10 @@ hr {
    ========================================================================== */
 
 .shell {
-  max-width: var(--measure);
+  max-width: var(--frame);
   margin: 0 auto;
-  padding: 0 var(--gutter) 5rem;
+  padding: 0 var(--gutter) 3rem;
 }
-
-.site-main { min-height: 50vh; }
 
 /* ---- Header -------------------------------------------------------------- */
 
@@ -137,7 +136,7 @@ hr {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  padding: 2.75rem 0 2.25rem;
+  padding: 1.6rem 0 1.35rem;
 }
 
 .site-title {
@@ -208,8 +207,8 @@ hr {
 /* ---- Footer -------------------------------------------------------------- */
 
 .site-footer {
-  margin-top: 5rem;
-  padding-top: 1.75rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
   font-size: 0.85rem;
   color: var(--ink-muted);
@@ -234,14 +233,15 @@ hr {
 
 /* One line, then out of the way. Anything longer belongs on /about/. */
 .intro {
-  padding: 0.5rem 0 2.75rem;
+  padding: 0 0 1.5rem;
+  max-width: var(--measure);
 }
 
 .intro p {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: 1.15rem;
+  line-height: 1.45;
   color: var(--ink-soft);
   text-wrap: balance;
 }
@@ -265,10 +265,13 @@ hr {
 /* ---- Featured ------------------------------------------------------------ */
 
 .featured {
-  padding: 2.25rem 0 2.5rem;
+  padding: 1.5rem 0 1.6rem;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
+
+.featured__excerpt,
+.featured__title { max-width: var(--measure); }
 
 .featured__title {
   font-family: var(--font-serif);
@@ -286,19 +289,19 @@ hr {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--ink-muted);
-  margin: 0.75rem 0 0;
+  margin: 0.55rem 0 0;
 }
 
 .featured__meta .dot { color: var(--rule); margin: 0 0.4rem; }
 
 .featured__excerpt {
   color: var(--ink-soft);
-  margin: 1rem 0 0;
+  margin: 0.7rem 0 0;
 }
 
 .featured__more {
   display: inline-block;
-  margin-top: 1.1rem;
+  margin-top: 0.75rem;
   font-size: 0.85rem;
   text-decoration: none;
   color: var(--accent);
@@ -308,9 +311,9 @@ hr {
 
 /* ---- The list ------------------------------------------------------------ */
 
-.listing { padding-top: 2.75rem; }
+.listing { padding-top: 1.6rem; }
 
-.listing > .eyebrow { margin-bottom: 1.1rem; }
+.listing > .eyebrow { margin-bottom: 0.7rem; }
 
 .rows {
   list-style: none;
@@ -318,14 +321,19 @@ hr {
   padding: 0;
 }
 
-/* Date first, like a changelog — scanning by date is the point. */
+/* Date first, like a changelog — scanning by date is the point. The tag sits
+   at the far right so the row spans the frame instead of trailing off. */
 .row {
   display: grid;
-  grid-template-columns: 6.75rem minmax(0, 1fr);
-  gap: 0 1rem;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+  gap: 0 1.25rem;
   align-items: baseline;
-  padding: 0.55rem 0;
+  padding: 0.45rem 0;
 }
+
+.row + .row { border-top: 1px solid var(--rule-soft); }
+
+.row__tag { justify-self: end; }
 
 .row__date {
   font-family: var(--font-mono);
@@ -361,7 +369,7 @@ hr {
 
 .page-head,
 .post-head {
-  padding: 1rem 0 2.5rem;
+  padding: 0.25rem 0 1.75rem;
 }
 
 .page-title,
@@ -398,6 +406,7 @@ hr {
 .prose {
   font-size: 1.02rem;
   color: var(--ink-soft);
+  max-width: var(--measure);
 }
 
 .prose > * + * { margin-top: 1.35em; }
@@ -492,8 +501,8 @@ hr {
 .post-nav {
   display: flex;
   gap: 1rem;
-  margin-top: 4rem;
-  padding-top: 1.75rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
 }
 
@@ -556,12 +565,16 @@ hr {
 
   .site-nav { gap: 1rem; }
 
-  /* Stack the date above the title rather than squeezing two columns. */
+  /* Two columns won't fit: title on its own line, date and tag beneath it. */
   .row {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
-    padding: 0.65rem 0;
+    grid-template-columns: 1fr auto;
+    gap: 0.15rem 0.75rem;
+    padding: 0.55rem 0;
   }
+
+  .row__title { grid-row: 1; grid-column: 1 / -1; }
+  .row__date { grid-row: 2; grid-column: 1; }
+  .row__tag { grid-row: 2; grid-column: 2; }
 
   .post-nav { flex-direction: column; }
 
